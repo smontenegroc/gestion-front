@@ -1,14 +1,16 @@
 import React from 'react';
+import Header from '../components/Header.jsx'
+import Sidebar from '../components/Sidebar.jsx'
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-  const token = useSelector((state) => state.token.token)
-
+  const fullname = useSelector((state) => state.user.fullname);
+  
   return (
     <div>
-      <Link to={'/users'}> Usuarios </Link>
+      <Header fullname={fullname} />
+      <Sidebar />
     </div>
   );
 };

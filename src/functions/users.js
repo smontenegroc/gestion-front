@@ -27,12 +27,15 @@ export const getUser = async(username, state, token) => {
     }
 }
 
-export const getRoles = async(state) => {
+export const deleteUser = async ( id, token, state) => {
     try {
-        const request = await axios.get(`http://localhost:4000/api/roles`)
-        state(request.data)        
+        const request = await axios.delete(`http://localhost:4000/api/users/${id}`, {
+            headers: {
+                "x-access-token": token
+            }
+        })
+        state(request.data)
     } catch (error) {
-        console.log('Hubo un error:', error.message)
+        
     }
 }
-

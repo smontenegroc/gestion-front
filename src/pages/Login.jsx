@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { login } from "../functions/auth";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { addToken } from "../redux/tokenSlice";
+import { addUser } from "../redux/userSlice";
 import { addAuth } from "../redux/authSlice";
 
 const Login = () => {
-    const token = useSelector((state) => state.token.token);
+    const token = useSelector((state) => state.auth.token);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -30,15 +30,20 @@ const Login = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        if(username.trim() === '' || password.trim() === ''){
+            alert('Debe llenar todos los campos')
+            return
+        }
+
         try {
             const res = await login(username, password);
 
             if (res.status === 'ok') {
-                console.log(res)
-                dispatch(addToken(res));
+                dispatch(addAuth(res));
+                dispatch(addUser(res));
                 navigate('/home');
             } else {
-                console.log(res.message);
+                alert(res.message)
             }
         } catch (error) {
             // Manejo del error, puedes mostrar un mensaje de error al usuario.

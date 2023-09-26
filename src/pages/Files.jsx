@@ -1,37 +1,38 @@
 import React, { useEffect, useState } from 'react';
+import TablaFiles from '../components/TablaFiles';
+import { getFiles } from '../functions/files';
 import { useSelector } from 'react-redux';
-import { getUsers } from '../functions/users';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import Cards from '../components/Cards';
 
-// import '../styles/Users.css'
+import '../styles/Files.css'
 
-const Users = () => {
+const Files = () => {
+
   const token = useSelector((state) => state.auth.token);
   const fullname = useSelector((state) => state.user.fullname);
-  const [users, setUsers] = useState(null);
+
+  const [files, setFiles] = useState(null);
 
   useEffect(() => {
-    getUsers(setUsers, token);
-  }, [token]);
+    getFiles(setFiles, token);
+  }, [token])
 
   return (
     <div className='root'>
       <Header fullname={fullname} />
       <div className='contenedor'>
         <Sidebar />
-        <div className='contenido'>
-          <h2>Usuarios</h2>
-          {users != null ? (
-            <Cards data={users} />
-          ) : ('No hay usuarios')}
+        <div>
+          {
+            files != null ? (
+              <TablaFiles data={files} />
+            ) : ('No hay archivos')
+          }
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Users;
-
-
+export default Files;

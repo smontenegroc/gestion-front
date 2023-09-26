@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    roleId: 0
+    token: ""
 }
 
 export const authSlice = createSlice({
@@ -9,8 +9,8 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         addAuth: (state, action) => {
-            const { roleId } = action.payload
-            state.roleId = roleId
+            const { token } = action.payload
+            state.token = token
         }
     }
 })
