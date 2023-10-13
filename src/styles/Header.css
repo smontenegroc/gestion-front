@@ -3,7 +3,9 @@
     align-items: center;
     justify-content: space-between;
     height: 60px;
-    background-color: #333;
+    /* background-color: #051F40; */
+    background: rgb(5,31,64);
+    background: linear-gradient(90deg, rgba(5,31,64,1) 0%, rgba(2,0,36,1) 50%, rgba(1,14,17,1) 100%);
     color: #fff;
     padding: 0 20px;
   }
@@ -31,4 +33,5 @@
     align-items: center;
     cursor: pointer;
   }
+
   

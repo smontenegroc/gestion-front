@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { getUsers } from '../functions/users';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import Cards from '../components/Cards';
+// import Cards from '../components/Cards';
+import Tabla from '../components/Tabla';
 
 // import '../styles/Users.css'
 
@@ -22,10 +23,7 @@ const Users = () => {
       <div className='contenedor'>
         <Sidebar />
         <div className='contenido'>
-          <h2>Usuarios</h2>
-          {users != null ? (
-            <Cards data={users} />
-          ) : ('No hay usuarios')}
+          <Tabla users={users}/>
         </div>
       </div>
     </div>

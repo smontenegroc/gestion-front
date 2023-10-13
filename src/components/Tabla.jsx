@@ -1,31 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { MaterialReactTable } from 'material-react-table';
+import { json } from 'react-router-dom';
 
-function Tabla({ data }) {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Nombre de Usuario</th>
-          <th>Rol</th>
-          <th>Opciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item) => (
-          <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{item.fullname}</td>
-            <td>{item.username}</td>
-            <td>{item.roleId}</td>
-            <td><Link to={`/users/${item.username}`}>Ver</Link></td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+
+
+const Tabla = ({users}) => {
+  //should be memoized or stable
+  const columns = useMemo(
+    () => [
+      {
+        accessorKey: 'users.fullname', //access nested data with dot notation
+        header: 'Nombre',
+        size: 150,
+      },
+      {
+        accessorKey: 'username',
+        header: 'Usuario',
+        size: 150,
+      },
+      {
+        accessorKey: 'lastLogin', //normal accessorKey
+        header: 'Útima conexión',
+        size: 200,
+      },
+      {
+        accessorKey: 'Acciones',
+        header: 'Acciones',
+        size: 150,
+      },
+    ],
+    [],
   );
-}
+
+  // return <MaterialReactTable columns={columns} data={users} />;
+  return json(users);
+};
 
 export default Tabla;
+

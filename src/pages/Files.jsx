@@ -4,6 +4,7 @@ import { getFiles } from '../functions/files';
 import { useSelector } from 'react-redux';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import FileCards from '../components/FileCards';
 
 import '../styles/Files.css'
 
@@ -26,7 +27,7 @@ const Files = () => {
         <div>
           {
             files != null ? (
-              <TablaFiles data={files} />
+              <FileCards data={files} />
             ) : ('No hay archivos')
           }
         </div>
